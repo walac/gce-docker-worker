@@ -55,7 +55,7 @@ resource "google_compute_instance_group_manager" "docker_worker" {
 
   base_instance_name = "docker-worker"
   update_strategy = "NONE"
-  target_size = 1
+  target_size = 4
   wait_for_instances = true
   zone = "us-east1-b"
 
