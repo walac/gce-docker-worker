@@ -21,7 +21,7 @@ resource "google_compute_instance_template" "docker_worker" {
   }
 
   disk {
-    source_image = "taskcluster-playground/docker-worker-app-1535990697"
+    source_image = "taskcluster-playground/docker-worker-app-1536593314"
     auto_delete = true
     boot = true
   }
