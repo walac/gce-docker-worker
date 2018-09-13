@@ -45,7 +45,7 @@ resource "google_compute_instance_template" "std2" {
     clientId = "${var.client_id}"
     accessToken = "${var.access_token}"
     capacity = "4"
-    workerType = "n1-std-2"
+    workerType = "gecko-t-linux-2"
     provisionerId = "gce"
   }
 }
@@ -103,7 +103,7 @@ resource "google_compute_instance_template" "std4" {
     clientId = "${var.client_id}"
     accessToken = "${var.access_token}"
     capacity = "4"
-    workerType = "n1-std-4"
+    workerType = "gecko-t-linux-4"
     provisionerId = "gce"
   }
 }
@@ -161,7 +161,7 @@ resource "google_compute_instance_template" "std8" {
     clientId = "${var.client_id}"
     accessToken = "${var.access_token}"
     capacity = "4"
-    workerType = "n1-std-8"
+    workerType = "gecko-t-linux-8"
     provisionerId = "gce"
   }
 }
@@ -219,7 +219,7 @@ resource "google_compute_instance_template" "std16" {
     clientId = "${var.client_id}"
     accessToken = "${var.access_token}"
     capacity = "4"
-    workerType = "n1-std-16"
+    workerType = "gecko-t-linux-16"
     provisionerId = "gce"
   }
 }
