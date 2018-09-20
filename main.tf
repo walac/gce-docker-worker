@@ -236,3 +236,119 @@ resource "google_compute_instance_group_manager" "grp_std16" {
   instance_template = "${google_compute_instance_template.std16.self_link}"
 }
 
+resource "google_compute_instance_template" "std32" {
+  name = "docker-worker-std32"
+
+  labels = {
+    worker = "docker-worker-std32"
+  }
+
+  instance_description = "docker-worker"
+  machine_type = "n1-standard-32"
+  can_ip_forward = false
+
+  scheduling {
+    automatic_restart   = true
+    on_host_maintenance = "MIGRATE"
+  }
+
+  disk {
+    source_image = "taskcluster-playground/docker-worker-app-1536593314"
+    auto_delete = true
+    boot = true
+  }
+
+  disk {
+    auto_delete = true
+    boot = false
+    disk_size_gb = 120
+  }
+
+  network_interface {
+    network = "default"
+    access_config {
+      network_tier = "STANDARD"
+    }
+  }
+
+  metadata = {
+    statelessHostname = "${var.stateless_hostname}"
+    relengApiToken = "${var.relengapi_token}"
+    clientId = "${var.client_id}"
+    accessToken = "${var.access_token}"
+    capacity = "4"
+    workerType = "gecko-t-linux-32"
+    provisionerId = "gce"
+  }
+}
+
+resource "google_compute_instance_group_manager" "grp_std32" {
+  name = "docker-worker-instances-std32"
+
+  base_instance_name = "docker-worker"
+  update_strategy = "NONE"
+  target_size = 4
+  wait_for_instances = true
+  zone = "us-east1-b"
+
+  instance_template = "${google_compute_instance_template.std32.self_link}"
+}
+
+resource "google_compute_instance_template" "std64" {
+  name = "docker-worker-std64"
+
+  labels = {
+    worker = "docker-worker-std64"
+  }
+
+  instance_description = "docker-worker"
+  machine_type = "n1-standard-64"
+  can_ip_forward = false
+
+  scheduling {
+    automatic_restart   = true
+    on_host_maintenance = "MIGRATE"
+  }
+
+  disk {
+    source_image = "taskcluster-playground/docker-worker-app-1536593314"
+    auto_delete = true
+    boot = true
+  }
+
+  disk {
+    auto_delete = true
+    boot = false
+    disk_size_gb = 120
+  }
+
+  network_interface {
+    network = "default"
+    access_config {
+      network_tier = "STANDARD"
+    }
+  }
+
+  metadata = {
+    statelessHostname = "${var.stateless_hostname}"
+    relengApiToken = "${var.relengapi_token}"
+    clientId = "${var.client_id}"
+    accessToken = "${var.access_token}"
+    capacity = "4"
+    workerType = "gecko-t-linux-64"
+    provisionerId = "gce"
+  }
+}
+
+resource "google_compute_instance_group_manager" "grp_std64" {
+  name = "docker-worker-instances-std64"
+
+  base_instance_name = "docker-worker"
+  update_strategy = "NONE"
+  target_size = 4
+  wait_for_instances = true
+  zone = "us-east1-b"
+
+  instance_template = "${google_compute_instance_template.std64.self_link}"
+}
+
