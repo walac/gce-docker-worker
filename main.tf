@@ -1,6 +1,6 @@
 provider "google" {
-  credentials = "${file("${pathexpand("~")}/.config/gcloud/taskcluster-playground-0bf86a6805e8.json")}"
-  project = "taskcluster-playground"
+  credentials = "${file("${pathexpand("~")}/linux64-builds-bfb4fe1d96a6.json")}"
+  project = "linux64-builds"
   region = "us-east-1"
 }
 
@@ -21,7 +21,7 @@ resource "google_compute_instance_template" "std8" {
   }
 
   disk {
-    source_image = "taskcluster-playground/docker-worker-app-1536593314"
+    source_image = "linux64-builds/docker-worker-app-1549466107"
     auto_delete = true
     boot = true
   }
@@ -44,9 +44,11 @@ resource "google_compute_instance_template" "std8" {
     relengApiToken = "${var.relengapi_token}"
     clientId = "${var.client_id}"
     accessToken = "${var.access_token}"
-    capacity = "4"
-    workerType = "gecko-t-linux-8"
+    capacity = "1"
+    workerType = "opt-linux64"
     provisionerId = "gce"
+    rootUrl = "https://taskcluster.net"
+    secretsPath = "project/taskcluster/docker-worker:secrets"
   }
 }
 
@@ -55,7 +57,7 @@ resource "google_compute_instance_group_manager" "grp_std8" {
 
   base_instance_name = "docker-worker"
   update_strategy = "NONE"
-  target_size = 4
+  target_size = 5
   wait_for_instances = true
   zone = "us-east1-b"
 
