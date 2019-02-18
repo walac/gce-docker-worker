@@ -45,7 +45,7 @@ resource "google_compute_instance_template" "std8" {
     clientId = "${var.client_id}"
     accessToken = "${var.access_token}"
     capacity = "1"
-    workerType = "opt-linux64"
+    workerType = "gecko-3-b-linux"
     provisionerId = "gce"
     rootUrl = "https://taskcluster.net"
     secretsPath = "project/taskcluster/docker-worker:secrets"
