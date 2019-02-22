@@ -44,7 +44,7 @@ resource "google_compute_instance_template" "std8" {
     relengApiToken = "${var.relengapi_token}"
     clientId = "${var.client_id}"
     accessToken = "${var.access_token}"
-    capacity = "2"
+    capacity = "1"
     workerType = "gecko-1-b-linux"
     provisionerId = "gce"
     rootUrl = "https://taskcluster.net"
@@ -57,7 +57,7 @@ resource "google_compute_instance_group_manager" "grp_std8" {
 
   base_instance_name = "docker-worker"
   update_strategy = "NONE"
-  target_size = 30
+  target_size = 5
   wait_for_instances = true
   zone = "us-east1-b"
 
