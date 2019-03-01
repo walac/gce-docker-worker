@@ -62,7 +62,7 @@ resource "google_compute_instance_group_manager" "grp_std8" {
 
   base_instance_name = "docker-worker"
   update_strategy = "NONE"
-  target_size = 5
+  target_size = 10
   wait_for_instances = true
   zone = "us-east1-b"
 
@@ -127,7 +127,7 @@ resource "google_compute_instance_group_manager" "grp_std16" {
 
   base_instance_name = "docker-worker"
   update_strategy = "NONE"
-  target_size = 5
+  target_size = 10
   wait_for_instances = true
   zone = "us-east1-b"
 
@@ -192,7 +192,7 @@ resource "google_compute_instance_group_manager" "grp_std32" {
 
   base_instance_name = "docker-worker"
   update_strategy = "NONE"
-  target_size = 5
+  target_size = 10
   wait_for_instances = true
   zone = "us-east1-b"
 
